@@ -1,5 +1,7 @@
 package com.lip.gmclient.base;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -7,17 +9,19 @@ import android.widget.FrameLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.lip.gmclient.R;
+import com.lip.gmclient.fragment.TaskFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
 
     private int FirstSelectedPosition =0;
     private BottomNavigationBar bottomNavigationBar;
 
+    private TaskFragment taskFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initView();
     }
 
     private void initView(){
@@ -39,15 +43,28 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setFirstSelectedPosition(FirstSelectedPosition)
                 .initialise();
         setDefaultFragment();
-
     }
 
     private void setDefaultFragment(){
-
+        FragmentManager fragmentManager=getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        taskFragment=new TaskFragment();
+        fragmentTransaction.replace(R.id.main_framlayout,taskFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onTabSelected(int position) {
+        FragmentManager fragmentManager=getFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+       switch (position){
+           case 0:
+               if(taskFragment==null) taskFragment=new TaskFragment();
+               fragmentTransaction.replace(R.id.main_framlayout,taskFragment);
+               break;
+           case 1:break;
+           case 2:break;
+       }
 
     }
 
