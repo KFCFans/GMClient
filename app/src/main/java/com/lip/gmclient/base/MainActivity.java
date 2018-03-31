@@ -9,6 +9,8 @@ import android.widget.FrameLayout;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.lip.gmclient.R;
+import com.lip.gmclient.fragment.MineFragment;
+import com.lip.gmclient.fragment.PlantFragment;
 import com.lip.gmclient.fragment.TaskFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
@@ -16,7 +18,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private int FirstSelectedPosition =0;
     private BottomNavigationBar bottomNavigationBar;
 
-    private TaskFragment taskFragment;
+    private TaskFragment taskFragment=null;
+    private PlantFragment plantFragment=null;
+    private MineFragment mineFragment=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,19 +66,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                if(taskFragment==null) taskFragment=new TaskFragment();
                fragmentTransaction.replace(R.id.main_framlayout,taskFragment);
                break;
-           case 1:break;
-           case 2:break;
+           case 1:
+               if(plantFragment==null) plantFragment=new PlantFragment();
+               fragmentTransaction.replace(R.id.main_framlayout,plantFragment);
+               break;
+           case 2:
+               if (mineFragment==null) mineFragment=new MineFragment();
+               fragmentTransaction.replace(R.id.main_framlayout,mineFragment);
+               break;
        }
-
+        fragmentTransaction.commit();
     }
 
     @Override
     public void onTabUnselected(int position) {
-
     }
-
     @Override
     public void onTabReselected(int position) {
-
     }
 }

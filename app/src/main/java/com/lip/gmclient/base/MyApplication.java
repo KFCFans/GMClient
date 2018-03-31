@@ -5,6 +5,8 @@ import android.app.Application;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 
 public class MyApplication extends Application {
@@ -12,10 +14,18 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // 配置网络框架 OKGO
         OkHttpClient.Builder builder=new OkHttpClient.Builder();
+        //全局的读取超时时间
+        builder.readTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //全局的写入超时时间
+        builder.writeTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
+        //全局的连接超时时间
+        builder.connectTimeout(OkGo.DEFAULT_MILLISECONDS, TimeUnit.MILLISECONDS);
         OkGo.getInstance().init(this)
                 .setOkHttpClient(builder.build())
                 .setRetryCount(3)
-                .setCacheMode(CacheMode.DEFAULT);
+                .setCacheMode(CacheMode.NO_CACHE);
     }
 }
