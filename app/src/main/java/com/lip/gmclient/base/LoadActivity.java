@@ -42,13 +42,14 @@ public class LoadActivity extends AppCompatActivity{
                     .execute(new StringCallback() {
                         @Override
                         public void onSuccess(Response<String> response) {
+                            newtonCradleLoading.stop();
+
                             Gson gson=new Gson();
                             ResponseBean responseBean=gson.fromJson(response.body(),ResponseBean.class);
 
                             int status=responseBean.getStatus();
                             if(status==200){
                                 //登陆成功
-                                newtonCradleLoading.stop();
                                 Intent intent=new Intent();
                                 intent.setClass(context,MainActivity.class);
                                 startActivity(intent);
@@ -57,6 +58,9 @@ public class LoadActivity extends AppCompatActivity{
                                 // Token错误
                                 Toast.makeText(context,"身份信息失效，请重新登陆",Toast.LENGTH_SHORT).show();
                                 SharedPreferencesUtil.setParam(context,Constant.ACCESSTOKEN,NOTOKEN);
+                                Intent intent=new Intent();
+                                intent.setClass(context,LoginActivity.class);
+                                startActivity(intent);
                             }else{
                                 Toast.makeText(context,"服务器错误，请联系管理员！",Toast.LENGTH_SHORT).show();
                             }
@@ -64,8 +68,7 @@ public class LoadActivity extends AppCompatActivity{
 
                         @Override
                         public void onError(Response<String> response) {
-                            // 用户尚未注册
-
+                            // 理论上不存在这种情况
                         }
                     });
         }
