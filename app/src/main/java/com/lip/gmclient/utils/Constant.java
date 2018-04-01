@@ -28,5 +28,6 @@ public class Constant {
     // 使用密码登陆
     public static final String URL_PWDLOGIN=URL_HEAD+"/security/pwdlogin";
 
-
+    //
+    public static final String URL_TOKENLOGIN=URL_HEAD+"/security/tokenlogin";
 }

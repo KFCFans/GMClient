@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
@@ -83,13 +84,16 @@ public class LoginActivity extends AppCompatActivity {
 
                         }else if(status==400){
                             // 密码错误
-
+                            Toast.makeText(context,"密码错误！",Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context,"服务器错误，请联系管理员！",Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onError(Response<String> response) {
-                        Log.e(Constant.TAG,response.getException().getMessage());
+                        // 用户尚未注册
+
                     }
                 });
     }

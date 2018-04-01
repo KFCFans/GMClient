@@ -53,7 +53,6 @@ public class DateUtil {
         try{
             date = dateFormat.parse(dateString);
         } catch(ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return date.getTime();
