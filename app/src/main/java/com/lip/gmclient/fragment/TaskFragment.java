@@ -8,20 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
 import com.lip.gmclient.domain.TaskBean;
-import com.lip.gmclient.untils.Constant;
+import com.lip.gmclient.utils.Constant;
+import com.lip.gmclient.adapter.*;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-
-import org.w3c.dom.Text;
 
 public class TaskFragment extends Fragment {
 
@@ -59,7 +55,7 @@ public class TaskFragment extends Fragment {
 
                         Gson gson=new Gson();
                         taskBean=gson.fromJson(response.body(),TaskBean.class);
-
+                        listView.setAdapter(new TaskListViewAdapter(context,taskBean));
                     }
 
                     @Override
@@ -69,40 +65,5 @@ public class TaskFragment extends Fragment {
                 });
 
     }
-    class TaskListViewAdapter extends BaseAdapter{
 
-        @Override
-        public int getCount() {
-            return taskBean.getData().size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            if(convertView==null){
-                convertView=View.inflate(context,R.layout.fragment_task_item,null);
-            }else {
-
-            }
-
-            return convertView;
-        }
-    }
-
-    static class  ViewHolder{
-        ImageView imageView;
-        TextView tv_title;
-        TextView tv_place;
-        TextView tv_time;
-    }
 }

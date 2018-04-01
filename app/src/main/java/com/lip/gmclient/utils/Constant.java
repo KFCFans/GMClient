@@ -1,4 +1,4 @@
-package com.lip.gmclient.untils;
+package com.lip.gmclient.utils;
 
 public class Constant {
 
