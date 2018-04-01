@@ -47,7 +47,6 @@ public class TaskFragment extends Fragment {
 
     private void initData() {
 
-        Log.i("zz", "initData: ------------------------------");
         OkGo.<String>get(Constant.URL_TASKLIST)
                 .execute(new StringCallback() {
                     @Override
@@ -56,6 +55,7 @@ public class TaskFragment extends Fragment {
                         Gson gson=new Gson();
                         taskBean=gson.fromJson(response.body(),TaskBean.class);
                         listView.setAdapter(new TaskListViewAdapter(context,taskBean));
+
                     }
 
                     @Override
