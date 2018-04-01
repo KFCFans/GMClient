@@ -2,8 +2,21 @@ package com.lip.gmclient.utils;
 
 public class Constant {
 
+    /**
+     * 全局TAG
+     */
     public static final String TAG="lip";
 
+    /**
+     * SharePreference
+     */
+    public static final String ACCESSTOKEN="ACCESSTOKEN";
+    public static final String USERID="USERID";
+
+
+    /**
+     * 网络请求URL
+     */
     public static final String URL_HEAD="http://10.0.2.2:8080/gm";
 
     // 获取任务列表
