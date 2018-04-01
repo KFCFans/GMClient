@@ -6,12 +6,14 @@ public class Constant {
 
     public static final String URL_HEAD="http://10.0.2.2:8080/gm";
 
-    /*获取任务列表*/
+    // 获取任务列表
     public static final String URL_TASKLIST=URL_HEAD+"/task/list";
 
-    /*获取地区列表*/
+    // 获取地区列表
     public static final String URL_AREALIST=URL_HEAD+"/area/list";
 
+    // 使用密码登陆
+    public static final String URL_PWDLOGIN=URL_HEAD+"/security/pwdlogin";
 
 
 }

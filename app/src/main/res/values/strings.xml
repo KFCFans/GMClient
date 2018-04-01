@@ -3,4 +3,10 @@
     <string name="fragment_task">任务</string>
     <string name="fragment_plant">植物</string>
     <string name="fragment_mine">个人中心</string>
+    <string name="tv_forget_pwd">忘记密码</string>
+    <string name="tv_register">注册</string>
+    <string name="btn_login">登陆</string>
+    <string name="hint_username">请输入用户名</string>
+    <string name="hint_pwd">请输入密码</string>
+
 </resources>

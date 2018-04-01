@@ -29,8 +29,8 @@ public class TaskListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public TaskBean.DataBean getItem(int position) {
+        return taskBean.getData().get(position);
     }
 
     @Override
