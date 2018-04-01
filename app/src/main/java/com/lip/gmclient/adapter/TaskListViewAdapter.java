@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lip.gmclient.R;
+import com.lip.gmclient.base.GlideApp;
 import com.lip.gmclient.domain.TaskBean;
 import com.lip.gmclient.utils.DateUtil;
 
@@ -59,7 +60,7 @@ public class TaskListViewAdapter extends BaseAdapter {
         viewHolder.tv_place.setText("地点id+"+bean.getPid());
         //FIXME: SQLite中读取地区信息
         viewHolder.tv_time.setText(DateUtil.getDateToString(bean.getEtime(),"yyyy年MM月dd日"));
-        Glide.with(context).load(bean.getTpic()).into(viewHolder.imageView);
+        GlideApp.with(context).load(bean.getTpic()).placeholder(R.drawable.task_item_default).fitCenter().into(viewHolder.imageView);
 
         return convertView;
     }
