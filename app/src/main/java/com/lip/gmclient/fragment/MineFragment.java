@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
+import com.lip.gmclient.activity.AboutUsActiity;
 import com.lip.gmclient.activity.BugResponseActivity;
 import com.lip.gmclient.base.GlideApp;
 import com.lip.gmclient.domain.UserBean;
@@ -121,7 +122,8 @@ public class MineFragment extends Fragment {
     }
 
     private void onClickAboutUs(View v){
-
+        Intent intent=new Intent(context, AboutUsActiity.class);
+        startActivity(intent);
     }
 
 }

@@ -38,4 +38,7 @@ public class Constant {
 
     // 获取用户信息
     public static final String URL_USERINFO= URL_HEAD+"/userinfo/get";
+
+    // 提交反馈信息
+    public static final String URL_FEEDBACK=URL_HEAD+"/feedback/commit";
 }

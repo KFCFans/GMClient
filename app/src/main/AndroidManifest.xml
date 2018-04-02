@@ -22,6 +22,7 @@
         <activity android:name=".base.MainActivity"/>
         <activity android:name=".base.LoginActivity"/>
         <activity android:name=".activity.BugResponseActivity"/>
+        <activity android:name=".activity.AboutUsActiity"/>
     </application>
 
 </manifest>

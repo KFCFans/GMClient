@@ -16,6 +16,7 @@ import com.lip.gmclient.R;
 import com.lip.gmclient.domain.TaskBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.adapter.*;
+import com.lip.gmclient.utils.SharedPreferencesUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -49,7 +50,11 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void initData() {
 
-        OkGo.<String>get(Constant.URL_TASKLIST)
+        String uid;
+        uid= (String) SharedPreferencesUtil.getParam(context,Constant.USERID,"15061883391");
+
+        OkGo.<String>post(Constant.URL_TASKLIST)
+                .params("uid",uid)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
