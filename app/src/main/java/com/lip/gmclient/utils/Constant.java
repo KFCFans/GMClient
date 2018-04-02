@@ -28,6 +28,9 @@ public class Constant {
     // 使用密码登陆
     public static final String URL_PWDLOGIN=URL_HEAD+"/security/pwdlogin";
 
-    //
+    // 使用Token登陆
     public static final String URL_TOKENLOGIN=URL_HEAD+"/security/tokenlogin";
+
+    // 获取植物信息列表
+    public static final String URL_PLANTLIST=URL_HEAD+"/plant/list";
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -19,7 +20,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-public class TaskFragment extends Fragment {
+public class TaskFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private Activity context;
     private ListView listView;
@@ -36,6 +37,7 @@ public class TaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_task,container,false);
         listView=(ListView)view.findViewById(R.id.fragment_task_listview);
+        listView.setOnItemClickListener(this);
         return view;
     }
 
@@ -66,4 +68,8 @@ public class TaskFragment extends Fragment {
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //FIXME: 点击后显示植物详情，完成/延期任务
+    }
 }
