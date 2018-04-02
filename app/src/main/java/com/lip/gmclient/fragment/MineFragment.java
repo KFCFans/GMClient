@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -32,6 +33,10 @@ public class MineFragment extends Fragment {
     public TextView nameTextView;
     public TextView phoneTextView;
 
+    public LinearLayout infoLayout;
+    public LinearLayout bugLayout;
+    public LinearLayout aboutusLayout;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +50,27 @@ public class MineFragment extends Fragment {
         headImageView=(ImageView)view.findViewById(R.id.fragment_mine_headimg);
         nameTextView=(TextView)view.findViewById(R.id.fragment_mine_username);
         phoneTextView=(TextView)view.findViewById(R.id.fragment_mine_phone);
-
+        infoLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_personinfo);
+        bugLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_bug);
+        aboutusLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_aboutus);
+        infoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickPersonInfo(v);
+            }
+        });
+        bugLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickBugResponse(v);
+            }
+        });
+        aboutusLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickAboutUs(v);
+            }
+        });
         return view;
     }
 
@@ -84,6 +109,18 @@ public class MineFragment extends Fragment {
                         Log.e(Constant.TAG,response.getException().getMessage());
                     }
                 });
+    }
+
+    private void onClickPersonInfo(View v){
 
     }
+
+    private void onClickBugResponse(View v){
+
+    }
+
+    private void onClickAboutUs(View v){
+
+    }
+
 }
