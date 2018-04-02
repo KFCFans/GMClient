@@ -2,6 +2,7 @@ package com.lip.gmclient.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,9 +15,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
-import com.lip.gmclient.adapter.TaskListViewAdapter;
+import com.lip.gmclient.activity.BugResponseActivity;
 import com.lip.gmclient.base.GlideApp;
-import com.lip.gmclient.domain.TaskBean;
 import com.lip.gmclient.domain.UserBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.SharedPreferencesUtil;
@@ -116,7 +116,8 @@ public class MineFragment extends Fragment {
     }
 
     private void onClickBugResponse(View v){
-
+        Intent intent=new Intent(context, BugResponseActivity.class);
+        startActivity(intent);
     }
 
     private void onClickAboutUs(View v){
