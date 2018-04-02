@@ -1,5 +1,7 @@
 package com.lip.gmclient.utils;
 
+import java.net.URL;
+
 public class Constant {
 
     /**
@@ -33,4 +35,7 @@ public class Constant {
 
     // 获取植物信息列表
     public static final String URL_PLANTLIST=URL_HEAD+"/plant/list";
+
+    // 获取用户信息
+    public static final String URL_USERINFO= URL_HEAD+"/userinfo/get";
 }

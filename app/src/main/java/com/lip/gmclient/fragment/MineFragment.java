@@ -4,14 +4,34 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.lip.gmclient.R;
+import com.lip.gmclient.adapter.TaskListViewAdapter;
+import com.lip.gmclient.base.GlideApp;
+import com.lip.gmclient.domain.TaskBean;
+import com.lip.gmclient.domain.UserBean;
+import com.lip.gmclient.utils.Constant;
+import com.lip.gmclient.utils.SharedPreferencesUtil;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+
+import org.w3c.dom.Text;
 
 public class MineFragment extends Fragment {
     public Activity context;
+
+    public ImageView headImageView;
+    public TextView nameTextView;
+    public TextView phoneTextView;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +42,48 @@ public class MineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_mine,container,false);
+        headImageView=(ImageView)view.findViewById(R.id.fragment_mine_headimg);
+        nameTextView=(TextView)view.findViewById(R.id.fragment_mine_username);
+        phoneTextView=(TextView)view.findViewById(R.id.fragment_mine_phone);
+
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    private void initData(){
+
+        String uid;
+        uid= (String)SharedPreferencesUtil.getParam(context,Constant.USERID,"15061883391");
+
+        OkGo.<String>post(Constant.URL_USERINFO)
+                .params("uid",uid)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                        Gson gson=new Gson();
+                        UserBean userBean=gson.fromJson(response.body(),UserBean.class);
+
+                        nameTextView.setText(userBean.getData().getNickname());
+                        phoneTextView.setText(userBean.getData().getUid());
+                        GlideApp.with(context)
+                                .load(userBean.getData().getAvatar())
+                                .placeholder(R.drawable.mine_head_default)
+                                .fitCenter()
+                                .into(headImageView);
+
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        Log.e(Constant.TAG,response.getException().getMessage());
+                    }
+                });
+
     }
 }
