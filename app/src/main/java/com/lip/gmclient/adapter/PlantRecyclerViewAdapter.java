@@ -19,6 +19,7 @@ public class PlantRecyclerViewAdapter extends RecyclerView.Adapter<PlantRecycler
 
     private Context context;
     private PlantListBean plantListBean;
+    private OnItemClickListener mOnItemClickListener;
 
     public PlantRecyclerViewAdapter(Context context, PlantListBean plantListBean) {
         this.context = context;
@@ -34,7 +35,7 @@ public class PlantRecyclerViewAdapter extends RecyclerView.Adapter<PlantRecycler
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlantViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlantViewHolder holder, final int position) {
         holder.textView.setText(plantListBean.getData().get(position).getPname());
         GlideApp.with(context)
                 .load(plantListBean.getData().get(position).getPimg())
@@ -42,6 +43,15 @@ public class PlantRecyclerViewAdapter extends RecyclerView.Adapter<PlantRecycler
                 .error(R.drawable.loading_error)
                 .fitCenter()
                 .into(holder.imageView);
+
+        if(mOnItemClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onClick(position);
+                }
+            });
+        }
     }
 
     @Override
@@ -60,5 +70,12 @@ public class PlantRecyclerViewAdapter extends RecyclerView.Adapter<PlantRecycler
             textView=(TextView)itemView.findViewById(R.id.fragment_plant_recyclerview_item_textview);
             imageView=(ImageView)itemView.findViewById(R.id.fragment_plant_recyclerview_item_imageview);
         }
+    }
+
+    public interface OnItemClickListener{
+        void onClick( int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
+        this. mOnItemClickListener=onItemClickListener;
     }
 }

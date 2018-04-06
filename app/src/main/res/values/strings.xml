@@ -10,4 +10,5 @@
     <string name="hint_pwd">请输入密码</string>
     <string name="fragment_bugresponse">意见反馈</string>
     <string name="fragment_aboutus">作者信息</string>
+    <string name="fragment_plantdetail">植物详情</string>
 </resources>
