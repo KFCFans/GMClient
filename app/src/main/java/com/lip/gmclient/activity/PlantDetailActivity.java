@@ -1,8 +1,6 @@
 package com.lip.gmclient.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 
 import com.lip.gmclient.R;
 import com.lip.gmclient.base.GlideApp;
-import com.lip.gmclient.domain.PlantListBean;
 
 public class PlantDetailActivity extends AppCompatActivity {
 

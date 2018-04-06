@@ -2,6 +2,7 @@ package com.lip.gmclient.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -13,9 +14,11 @@ import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
+import com.lip.gmclient.activity.TaskDetailActivity;
 import com.lip.gmclient.domain.TaskBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.adapter.*;
+import com.lip.gmclient.utils.DateUtil;
 import com.lip.gmclient.utils.SharedPreferencesUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -25,7 +28,7 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private Activity context;
     private ListView listView;
-    public TaskBean taskBean;
+    public TaskBean taskBean=null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +78,12 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //FIXME: 点击后显示植物详情，完成/延期任务
+        if(taskBean==null) return;
+        Intent intent=new Intent(context, TaskDetailActivity.class);
+        Bundle data=new Bundle();
+        data.putString("name",taskBean.getData().get(position).getTname());
+        data.putString("stime", DateUtil.getDateToString(taskBean.getData().get(position).getStime(),"yyyy年MM月dd日"));
+        data.putString("etime",DateUtil.getDateToString(taskBean.getData().get(position).getEtime(),"yyyy年MM月dd日"));
+        data.putString("detail",taskBean.getData().get(position).getTname());
     }
 }

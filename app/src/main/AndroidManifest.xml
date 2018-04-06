@@ -24,6 +24,7 @@
         <activity android:name=".activity.BugResponseActivity"/>
         <activity android:name=".activity.AboutUsActiity"/>
         <activity android:name=".activity.PlantDetailActivity"/>
+        <activity android:name=".activity.TaskDetailActivity"/>
     </application>
 
 </manifest>

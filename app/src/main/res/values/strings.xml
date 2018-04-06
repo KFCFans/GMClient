@@ -11,4 +11,5 @@
     <string name="fragment_bugresponse">意见反馈</string>
     <string name="fragment_aboutus">作者信息</string>
     <string name="fragment_plantdetail">植物详情</string>
+    <string name="fragment_taskdetail">任务详情</string>
 </resources>
