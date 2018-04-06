@@ -41,4 +41,16 @@ public class Constant {
 
     // 提交反馈信息
     public static final String URL_FEEDBACK=URL_HEAD+"/feedback/commit";
+
+    // 完成新增任务
+    public static final String URL_FINISHADDTASK=URL_HEAD+"/task/add";
+
+    // 完成移除任务
+    public static final String URL_FINISHDELTASK=URL_HEAD+"/task/del";
+
+    // 完成移植任务
+    public static final String URL_FINISHREPLACETASK=URL_HEAD+"/task/replace";
+
+    // 完成维护任务
+    public static final String URL_FINISHMAITAINTASK=URL_HEAD+"/task/maintain";
 }

@@ -86,6 +86,11 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
         data.putString("etime",DateUtil.getDateToString(taskBean.getData().get(position).getEtime(),"yyyy年MM月dd日"));
         data.putString("detail",taskBean.getData().get(position).getTdetail());
         data.putString("imgurl",taskBean.getData().get(position).getTpic());
+        data.putInt("type",taskBean.getData().get(position).getRtype());
+        data.putInt("tid",taskBean.getData().get(position).getTid());
+        data.putInt("aid",taskBean.getData().get(position).getAid());
+        data.putInt("pid",taskBean.getData().get(position).getPid());
+        data.putInt("iid",taskBean.getData().get(position).getIid());
         intent.putExtra("data",data);
         startActivity(intent);
     }

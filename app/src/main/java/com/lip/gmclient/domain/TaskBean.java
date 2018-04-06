@@ -7,7 +7,7 @@ public class TaskBean {
     /**
      * status : 200
      * msg : OK
-     * data : [{"tid":1,"aid":1,"rtype":0,"stime":1522895031000,"etime":1527819834000,"pid":1,"tstatus":0,"tname":"维护植物","tpic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522904890581&di=49a6e903e0a59b093f75ca914a2b1273&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc83d70cf3bc79f3d9e86882db8a1cd11728b2943.jpg","uid":"15061883391","tdetail":"教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！"}]
+     * data : [{"tid":1,"aid":1,"rtype":0,"stime":1522895031000,"etime":1527819834000,"pid":1,"tstatus":0,"tname":"维护植物","tpic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522904890581&di=49a6e903e0a59b093f75ca914a2b1273&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc83d70cf3bc79f3d9e86882db8a1cd11728b2943.jpg","uid":"15061883391","tdetail":"教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！","iid":1}]
      */
 
     private int status;
@@ -51,6 +51,7 @@ public class TaskBean {
          * tpic : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522904890581&di=49a6e903e0a59b093f75ca914a2b1273&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc83d70cf3bc79f3d9e86882db8a1cd11728b2943.jpg
          * uid : 15061883391
          * tdetail : 教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！
+         * iid : 1
          */
 
         private int tid;
@@ -64,6 +65,7 @@ public class TaskBean {
         private String tpic;
         private String uid;
         private String tdetail;
+        private int iid;
 
         public int getTid() {
             return tid;
@@ -151,6 +153,14 @@ public class TaskBean {
 
         public void setTdetail(String tdetail) {
             this.tdetail = tdetail;
+        }
+
+        public int getIid() {
+            return iid;
+        }
+
+        public void setIid(int iid) {
+            this.iid = iid;
         }
     }
 }
