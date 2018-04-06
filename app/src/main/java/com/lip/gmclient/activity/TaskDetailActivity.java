@@ -55,6 +55,12 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     private void initData() {
 
+        Bundle data=getIntent().getBundleExtra("data");
+        title=data.getString("name");
+        starttime=data.getString("stime");
+        endtime=data.getString("etime");
+        detail=data.getString("detail");
+        imgurl=data.getString("imgurl");
     }
 
     public void back(View view){

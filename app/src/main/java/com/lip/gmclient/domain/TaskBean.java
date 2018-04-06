@@ -7,7 +7,7 @@ public class TaskBean {
     /**
      * status : 200
      * msg : OK
-     * data : [{"tid":1,"aid":1,"rtype":0,"iid":1,"stime":1522324585000,"etime":1522497389000,"pid":1,"tstatus":0,"tname":"维护植物","tpic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522334624024&di=4c07db57fd1bb8e5ff661cdf452c0d11&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F377adab44aed2e732730e90a8d01a18b87d6fa3f.jpg"},{"tid":2,"aid":2,"rtype":1,"iid":2,"stime":1522380900000,"etime":1524800104000,"pid":2,"tstatus":0,"tname":"大家好我是标题","tpic":"%2F377adab44aed2e732730e90a8d01a18b87d6fa3f.jpg"}]
+     * data : [{"tid":1,"aid":1,"rtype":0,"stime":1522895031000,"etime":1527819834000,"pid":1,"tstatus":0,"tname":"维护植物","tpic":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522904890581&di=49a6e903e0a59b093f75ca914a2b1273&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc83d70cf3bc79f3d9e86882db8a1cd11728b2943.jpg","uid":"15061883391","tdetail":"教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！"}]
      */
 
     private int status;
@@ -43,25 +43,27 @@ public class TaskBean {
          * tid : 1
          * aid : 1
          * rtype : 0
-         * iid : 1
-         * stime : 1522324585000
-         * etime : 1522497389000
+         * stime : 1522895031000
+         * etime : 1527819834000
          * pid : 1
          * tstatus : 0
          * tname : 维护植物
-         * tpic : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522334624024&di=4c07db57fd1bb8e5ff661cdf452c0d11&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F377adab44aed2e732730e90a8d01a18b87d6fa3f.jpg
+         * tpic : https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522904890581&di=49a6e903e0a59b093f75ca914a2b1273&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2Fc83d70cf3bc79f3d9e86882db8a1cd11728b2943.jpg
+         * uid : 15061883391
+         * tdetail : 教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！教育局领导要来我校实地考察，此项任务必须好好完成，否则工资不存在的！
          */
 
         private int tid;
         private int aid;
         private int rtype;
-        private int iid;
         private long stime;
         private long etime;
         private int pid;
         private int tstatus;
         private String tname;
         private String tpic;
+        private String uid;
+        private String tdetail;
 
         public int getTid() {
             return tid;
@@ -85,14 +87,6 @@ public class TaskBean {
 
         public void setRtype(int rtype) {
             this.rtype = rtype;
-        }
-
-        public int getIid() {
-            return iid;
-        }
-
-        public void setIid(int iid) {
-            this.iid = iid;
         }
 
         public long getStime() {
@@ -142,14 +136,21 @@ public class TaskBean {
         public void setTpic(String tpic) {
             this.tpic = tpic;
         }
-    }
 
-    @Override
-    public String toString() {
-        return "TaskBean{" +
-                "status=" + status +
-                ", msg='" + msg + '\'' +
-                ", data=" + data +
-                '}';
+        public String getUid() {
+            return uid;
+        }
+
+        public void setUid(String uid) {
+            this.uid = uid;
+        }
+
+        public String getTdetail() {
+            return tdetail;
+        }
+
+        public void setTdetail(String tdetail) {
+            this.tdetail = tdetail;
+        }
     }
 }
