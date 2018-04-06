@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
@@ -23,12 +25,17 @@ import com.lip.gmclient.utils.SharedPreferencesUtil;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 public class TaskFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private Activity context;
     private ListView listView;
     public TaskBean taskBean=null;
+
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +49,15 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
         View view =inflater.inflate(R.layout.fragment_task,container,false);
         listView=(ListView)view.findViewById(R.id.fragment_task_listview);
         listView.setOnItemClickListener(this);
+        refreshLayout=(SmartRefreshLayout)view.findViewById(R.id.fragment_task_refresh);
+        // 关闭加载更多功能
+        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                initData();
+            }
+        });
         return view;
     }
 
@@ -65,12 +81,14 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
                         Gson gson=new Gson();
                         taskBean=gson.fromJson(response.body(),TaskBean.class);
                         listView.setAdapter(new TaskListViewAdapter(context,taskBean));
-
+                        refreshLayout.finishRefresh();
                     }
 
                     @Override
                     public void onError(Response<String> response) {
                         Log.e(Constant.TAG,response.getException().getMessage());
+                        refreshLayout.finishRefresh();
+                        Toast.makeText(context,"网络错误！",Toast.LENGTH_SHORT).show();
                     }
                 });
 
