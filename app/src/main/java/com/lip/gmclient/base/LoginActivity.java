@@ -17,6 +17,7 @@ import com.lip.gmclient.R;
 import com.lip.gmclient.adapter.TaskListViewAdapter;
 import com.lip.gmclient.domain.ResponseBean;
 import com.lip.gmclient.domain.TaskBean;
+import com.lip.gmclient.domain.UserBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.Md5Util;
 import com.lip.gmclient.utils.SharedPreferencesUtil;
@@ -64,13 +65,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Response<String> response) {
                         Gson gson=new Gson();
-                        ResponseBean responseBean=gson.fromJson(response.body(),ResponseBean.class);
+                        UserBean userBean=gson.fromJson(response.body(),UserBean.class);
 
-                        int status=responseBean.getStatus();
+                        int status=userBean.getStatus();
                         if(status==200){
                             //登陆成功
-                            SharedPreferencesUtil.setParam(context,Constant.ACCESSTOKEN,responseBean.getData());
+                            SharedPreferencesUtil.setParam(context,Constant.ACCESSTOKEN,userBean.getData().getAccesstoken());
                             SharedPreferencesUtil.setParam(context,Constant.USERID,username);
+                            SharedPreferencesUtil.setParam(context,Constant.PRIORITY,userBean.getData().getPriority());
                             Intent intent=new Intent();
                             intent.setClass(context,MainActivity.class);
                             startActivity(intent);

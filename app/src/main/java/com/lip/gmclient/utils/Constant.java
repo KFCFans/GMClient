@@ -14,6 +14,7 @@ public class Constant {
      */
     public static final String ACCESSTOKEN="ACCESSTOKEN";
     public static final String USERID="USERID";
+    public static final String PRIORITY="USERPRIORITY";
 
 
     /**
