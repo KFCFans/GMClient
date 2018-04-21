@@ -33,7 +33,7 @@ public class ActivityFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_activity,container,false);
         banner=(Banner) view.findViewById(R.id.fragment_activity_banner);
         banner.setImageLoader(new GlideImageLoader());
-        //设置图片加载集合(网络加载)
+        //FIXME： 网络加载ViewPager进行显示
         List<String> imageArray=new ArrayList<>();
         imageArray.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524310255028&di=4d43cbf42f7923e134aa7daee56f56bb&imgtype=0&src=http%3A%2F%2Fpic62.nipic.com%2Ffile%2F20150319%2F20593754_104525140961_2.jpg");
         imageArray.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524310255007&di=59513cb9f5d698655335140ef5353f16&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F16%2F53%2F21%2F16532165-91094019202e021aa768b30314b7dc15.jpg");
