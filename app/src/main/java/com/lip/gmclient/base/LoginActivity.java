@@ -30,9 +30,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText et_username;
     private EditText et_password;
-    private Button bt_login;
-    private  Button bt_forgetpwd;
-    private  Button bt_register;
 
     private String username;
     private String password;
@@ -50,10 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
         et_username=(EditText) findViewById(R.id.activity_login_username);
         et_password=(EditText) findViewById(R.id.activity_login_password);
-        bt_login=(Button)findViewById(R.id.activity_login_loginbtn);
-        bt_forgetpwd=(Button)findViewById(R.id.activity_login_forgetbtn);
-        bt_register=(Button)findViewById(R.id.activity_login_register);
-
     }
 
     /**
@@ -98,17 +91,4 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * 忘记密码监听
-     */
-    public void onClickForgetBtn(View view){
-
-    }
-
-    /**
-     * 注册监听
-     */
-    public void onClickRegisterBtn(View view){
-
-    }
 }
