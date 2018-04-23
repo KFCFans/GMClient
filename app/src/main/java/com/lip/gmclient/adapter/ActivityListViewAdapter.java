@@ -11,6 +11,7 @@ import com.lip.gmclient.R;
 import com.lip.gmclient.base.GlideApp;
 import com.lip.gmclient.domain.ActivityListBean;
 import com.lip.gmclient.domain.TaskBean;
+import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.DateUtil;
 
 public class ActivityListViewAdapter extends BaseAdapter {
@@ -58,8 +59,12 @@ public class ActivityListViewAdapter extends BaseAdapter {
         viewHolder.tv_title.setText(bean.getAvname());
         viewHolder.tv_place.setText(bean.getAvplace());
         viewHolder.tv_time.setText(DateUtil.getDateToString(bean.getAvstime(),"yyyy年MM月dd日"));
-
-        GlideApp.with(context).load(bean.getAvpic()).placeholder(R.drawable.task_item_default).fitCenter().into(viewHolder.imageView);
+        String final_url= Constant.URL_IMGHEAD+"/activity/"+bean.getAvpic();
+        GlideApp.with(context)
+                .load(final_url)
+                .placeholder(R.drawable.mine_background_default)
+                .fitCenter()
+                .into(viewHolder.imageView);
 
         return convertView;
     }
