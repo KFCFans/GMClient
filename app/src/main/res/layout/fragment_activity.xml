@@ -3,16 +3,24 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <com.youth.banner.Banner
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment_activity_banner"
         android:layout_width="match_parent"
         android:layout_height="180dp" />
 
-    <ListView
-        android:id="@+id/fragment_activity_listview"
-        android:layout_weight="1"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/fragment_activity_refresh"
         android:layout_width="match_parent"
-        android:layout_height="0dp"></ListView>
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <ListView
+            android:id="@+id/fragment_activity_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>
