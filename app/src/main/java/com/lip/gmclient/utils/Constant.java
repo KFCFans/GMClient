@@ -21,6 +21,10 @@ public class Constant {
      * 网络请求URL
      */
     public static final String URL_HEAD="http://10.0.2.2:8080/gm";
+    public static final String URL_IMGHEAD="http://10.0.2.2:8080/img";
+
+    // 获取viewpager
+    public static final String URL_VIEWPAGER=URL_HEAD+"/common/vplist";
 
     // 获取任务列表
     public static final String URL_TASKLIST=URL_HEAD+"/task/list";
@@ -54,4 +58,7 @@ public class Constant {
 
     // 完成维护任务
     public static final String URL_FINISHMAITAINTASK=URL_HEAD+"/task/maintain";
+
+    // 获取活动列表
+    public static final String URL_ACTIVITYLIST=URL_HEAD+"/common/avlist";
 }

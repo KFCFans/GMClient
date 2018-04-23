@@ -4,12 +4,25 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.lip.gmclient.R;
+import com.lip.gmclient.adapter.ActivityListViewAdapter;
 import com.lip.gmclient.adapter.GlideImageLoader;
+import com.lip.gmclient.adapter.TaskListViewAdapter;
+import com.lip.gmclient.domain.ActivityListBean;
+import com.lip.gmclient.domain.TaskBean;
+import com.lip.gmclient.domain.VPListBean;
+import com.lip.gmclient.utils.Constant;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
@@ -20,6 +33,10 @@ public class ActivityFragment extends Fragment {
     public Activity context;
 
     private Banner banner;
+    private ListView listView;
+    List<String> imageArray;
+
+    public ActivityListBean activityListBean=null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,16 +48,8 @@ public class ActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_activity,container,false);
+        listView=(ListView)view.findViewById(R.id.fragment_activity_listview);
         banner=(Banner) view.findViewById(R.id.fragment_activity_banner);
-        banner.setImageLoader(new GlideImageLoader());
-        //FIXME： 网络加载ViewPager进行显示
-        List<String> imageArray=new ArrayList<>();
-        imageArray.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524310255028&di=4d43cbf42f7923e134aa7daee56f56bb&imgtype=0&src=http%3A%2F%2Fpic62.nipic.com%2Ffile%2F20150319%2F20593754_104525140961_2.jpg");
-        imageArray.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524310255007&di=59513cb9f5d698655335140ef5353f16&imgtype=0&src=http%3A%2F%2Fbpic.ooopic.com%2F16%2F53%2F21%2F16532165-91094019202e021aa768b30314b7dc15.jpg");
-        imageArray.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524310255005&di=14666de35820f221636644bd51448274&imgtype=0&src=http%3A%2F%2Fwww.gardensmuseum.cn%2Fupload%2FActiveImg%2FACT_2014327173451513.jpg");
-
-        banner.setImages(imageArray);
-        banner.start();
 
         return view;
     }
@@ -53,5 +62,47 @@ public class ActivityFragment extends Fragment {
 
     private void initData() {
 
+        // 加载viewpager图片数据
+        OkGo.<String>post(Constant.URL_VIEWPAGER)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Gson gson=new Gson();
+                        VPListBean vpListBean=gson.fromJson(response.body(),VPListBean.class);
+                        imageArray=new ArrayList<>();
+                        for(int i=0;i<vpListBean.getData().size();i++){
+                            String picurl=Constant.URL_IMGHEAD+"/viewpager/"+vpListBean.getData().get(i).getUrl()+".jpg";
+                            imageArray.add(picurl);
+                        }
+                        banner.setImageLoader(new GlideImageLoader());
+                        banner.setImages(imageArray);
+                        banner.start();
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        Log.e(Constant.TAG,response.getException().getMessage());
+                        Toast.makeText(context,"网络错误！",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // 加载活动数据
+        OkGo.<String>post(Constant.URL_ACTIVITYLIST)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+
+                        Gson gson=new Gson();
+                        ActivityListBean activityListBean=gson.fromJson(response.body(),ActivityListBean.class);
+                        listView.setAdapter(new ActivityListViewAdapter(context,activityListBean));
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        Log.e(Constant.TAG,response.getException().getMessage());
+
+                        Toast.makeText(context,"网络错误！",Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

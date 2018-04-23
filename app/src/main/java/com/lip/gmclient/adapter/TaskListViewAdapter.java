@@ -58,6 +58,7 @@ public class TaskListViewAdapter extends BaseAdapter {
         TaskBean.DataBean bean = taskBean.getData().get(position);
         viewHolder.tv_title.setText(bean.getTname());
         viewHolder.tv_place.setText("地点id+"+bean.getPid());
+
         //FIXME: SQLite中读取地区信息
         viewHolder.tv_time.setText(DateUtil.getDateToString(bean.getEtime(),"yyyy年MM月dd日"));
         GlideApp.with(context).load(bean.getTpic()).placeholder(R.drawable.task_item_default).fitCenter().into(viewHolder.imageView);
