@@ -30,16 +30,21 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import java.util.ArrayList;
+
 import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class TaskFragment extends Fragment implements AdapterView.OnItemClickListener,RadioGroup.OnCheckedChangeListener {
 
     private Activity context;
     private ListView listView;
+    public TaskBean orginBean=null;
     public TaskBean taskBean=null;
 
+    private Boolean netFinished=false;
     private SmartRefreshLayout refreshLayout;
     private SegmentedGroup segmentedGroup;
+    private int taskType=-1;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +61,7 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
         refreshLayout=(SmartRefreshLayout)view.findViewById(R.id.fragment_task_refresh);
         segmentedGroup=(SegmentedGroup)view.findViewById(R.id.fragment_task_segmentgroup);
         segmentedGroup.setOnCheckedChangeListener(this);
+
         // 关闭加载更多功能
         refreshLayout.setEnableLoadMore(false);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -78,21 +84,26 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
         String uid;
         uid= (String) SharedPreferencesUtil.getParam(context,Constant.USERID,"15061883391");
 
+        // 初始化taskbean
+        taskBean=new TaskBean();
+        taskBean.data=new ArrayList<>();
+
         OkGo.<String>post(Constant.URL_TASKLIST)
                 .params("uid",uid)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
 
+                        netFinished=true;
                         Gson gson=new Gson();
-                        taskBean=gson.fromJson(response.body(),TaskBean.class);
-                        listView.setAdapter(new TaskListViewAdapter(context,taskBean));
+                        orginBean=gson.fromJson(response.body(),TaskBean.class);
+                        dealDataByType(taskType);
                         refreshLayout.finishRefresh();
+
                     }
 
                     @Override
                     public void onError(Response<String> response) {
-                        Log.e(Constant.TAG,response.getException().getMessage());
                         refreshLayout.finishRefresh();
                         Toast.makeText(context,"网络错误！",Toast.LENGTH_SHORT).show();
                     }
@@ -102,20 +113,28 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(taskBean==null) return;
+
         Intent intent=new Intent(context, TaskDetailActivity.class);
         Bundle data=new Bundle();
-        data.putString("name",taskBean.getData().get(position).getTname());
-        data.putString("stime", DateUtil.getDateToString(taskBean.getData().get(position).getStime(),"yyyy年MM月dd日"));
-        data.putString("etime",DateUtil.getDateToString(taskBean.getData().get(position).getEtime(),"yyyy年MM月dd日"));
-        data.putString("detail",taskBean.getData().get(position).getTdetail());
-        data.putString("imgurl",taskBean.getData().get(position).getTpic());
-        data.putInt("type",taskBean.getData().get(position).getRtype());
-        data.putInt("tid",taskBean.getData().get(position).getTid());
-        data.putInt("aid",taskBean.getData().get(position).getAid());
-        data.putInt("pid",taskBean.getData().get(position).getPid());
-        data.putInt("iid",taskBean.getData().get(position).getIid());
+        TaskBean bean=null;
+        if(taskType==-1){
+            bean=orginBean;
+        }else{
+            bean=taskBean;
+        }
+
+        data.putString("name",bean.getData().get(position).getTname());
+        data.putString("stime", DateUtil.getDateToString(bean.getData().get(position).getStime(),"yyyy年MM月dd日"));
+        data.putString("etime",DateUtil.getDateToString(bean.getData().get(position).getEtime(),"yyyy年MM月dd日"));
+        data.putString("detail",bean.getData().get(position).getTdetail());
+        data.putString("imgurl",bean.getData().get(position).getTpic());
+        data.putInt("type",bean.getData().get(position).getRtype());
+        data.putInt("tid",bean.getData().get(position).getTid());
+        data.putInt("aid",bean.getData().get(position).getAid());
+        data.putInt("pid",bean.getData().get(position).getPid());
+        data.putInt("iid",bean.getData().get(position).getIid());
         intent.putExtra("data",data);
+
         startActivity(intent);
     }
 
@@ -123,11 +142,39 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
             case R.id.fragment_task_radiobtn_all:
+                dealDataByType(-1);
                 break;
-            case R.id.fragment_task_radiobtn_save:break;
-            case R.id.fragment_task_radiobtn_replace:break;
-            case R.id.fragment_task_radiobtn_add:break;
-            case R.id.fragment_task_radiobtn_del:break;
+            case R.id.fragment_task_radiobtn_save:
+                dealDataByType(0);
+                break;
+            case R.id.fragment_task_radiobtn_replace:
+                dealDataByType(1);
+                break;
+            case R.id.fragment_task_radiobtn_add:
+                dealDataByType(2);
+                break;
+            case R.id.fragment_task_radiobtn_del:
+                dealDataByType(3);
+                break;
         }
+    }
+
+    // 任务类型，0为维护，1为移植，2为新增，3为删除  -1为全部数据
+    public void dealDataByType(int type){
+        taskType=type;
+
+        if(!netFinished) return;
+
+        if(type==-1){
+            listView.setAdapter(new TaskListViewAdapter(context,orginBean));
+            return;
+        }
+        taskBean.getData().clear();
+        for(int i=0;i<orginBean.getData().size();i++){
+            if(orginBean.getData().get(i).getRtype()==type){
+                taskBean.getData().add(orginBean.getData().get(i));
+            }
+        }
+        listView.setAdapter(new TaskListViewAdapter(context,taskBean));
     }
 }

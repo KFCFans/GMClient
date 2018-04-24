@@ -12,7 +12,7 @@ public class TaskBean {
 
     private int status;
     private String msg;
-    private List<DataBean> data;
+    public List<DataBean> data;
 
     public int getStatus() {
         return status;
