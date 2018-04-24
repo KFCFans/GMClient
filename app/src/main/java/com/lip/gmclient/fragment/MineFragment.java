@@ -111,7 +111,6 @@ public class MineFragment extends Fragment {
                                 .placeholder(R.drawable.mine_head_default)
                                 .fitCenter()
                                 .into(headImageView);
-
                     }
 
                     @Override
@@ -138,6 +137,7 @@ public class MineFragment extends Fragment {
     private void onClickLogOut(View v){
         // 删除保留在本地的数据
         SharedPreferencesUtil.setParam(context,Constant.ACCESSTOKEN,"NOTOKEN");
+        SharedPreferencesUtil.setParam(context,Constant.PRIORITY,2);
 
         Intent intent=new Intent(context, LoginActivity.class);
         startActivity(intent);

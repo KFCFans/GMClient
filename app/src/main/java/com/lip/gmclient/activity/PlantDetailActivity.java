@@ -43,7 +43,6 @@ public class PlantDetailActivity extends AppCompatActivity {
         tv_plantdetail.setText(plantdetail);
 
         String final_url= Constant.URL_IMGHEAD+"/plant/"+plantimg+".jpg";
-
         GlideApp.with(this)
                 .load(final_url)
                 .placeholder(R.drawable.task_item_default)
@@ -58,7 +57,6 @@ public class PlantDetailActivity extends AppCompatActivity {
         plantdetail=data.getString("detail");
         plantimg=data.getString("img");
 
-        Log.i(Constant.TAG,plantimg);
     }
 
     public void back(View v){

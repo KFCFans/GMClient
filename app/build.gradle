@@ -33,4 +33,5 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-3'
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'info.hoang8f:android-segmented:1.0.6'
 }

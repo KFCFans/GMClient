@@ -17,12 +17,14 @@ import com.lip.gmclient.utils.DateUtil;
 public class TaskListViewAdapter extends BaseAdapter {
 
     private Context context;
+    private Integer taskType=0;
     private TaskBean taskBean;
     private String[] areainfo={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
 
-    public TaskListViewAdapter(Context context, TaskBean taskBean) {
+    public TaskListViewAdapter(Context context, TaskBean taskBean,int taskType) {
         this.context = context;
         this.taskBean = taskBean;
+        this.taskType=taskType;
     }
 
     @Override

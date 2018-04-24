@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -29,13 +30,16 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-public class TaskFragment extends Fragment implements AdapterView.OnItemClickListener {
+import info.hoang8f.android.segmented.SegmentedGroup;
+
+public class TaskFragment extends Fragment implements AdapterView.OnItemClickListener,RadioGroup.OnCheckedChangeListener {
 
     private Activity context;
     private ListView listView;
     public TaskBean taskBean=null;
 
     private SmartRefreshLayout refreshLayout;
+    private SegmentedGroup segmentedGroup;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +54,8 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
         listView=(ListView)view.findViewById(R.id.fragment_task_listview);
         listView.setOnItemClickListener(this);
         refreshLayout=(SmartRefreshLayout)view.findViewById(R.id.fragment_task_refresh);
+        segmentedGroup=(SegmentedGroup)view.findViewById(R.id.fragment_task_segmentgroup);
+        segmentedGroup.setOnCheckedChangeListener(this);
         // 关闭加载更多功能
         refreshLayout.setEnableLoadMore(false);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -111,5 +117,17 @@ public class TaskFragment extends Fragment implements AdapterView.OnItemClickLis
         data.putInt("iid",taskBean.getData().get(position).getIid());
         intent.putExtra("data",data);
         startActivity(intent);
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId){
+            case R.id.fragment_task_radiobtn_all:
+                break;
+            case R.id.fragment_task_radiobtn_save:break;
+            case R.id.fragment_task_radiobtn_replace:break;
+            case R.id.fragment_task_radiobtn_add:break;
+            case R.id.fragment_task_radiobtn_del:break;
+        }
     }
 }
