@@ -11,12 +11,14 @@ import com.bumptech.glide.Glide;
 import com.lip.gmclient.R;
 import com.lip.gmclient.base.GlideApp;
 import com.lip.gmclient.domain.TaskBean;
+import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.DateUtil;
 
 public class TaskListViewAdapter extends BaseAdapter {
 
     private Context context;
     private TaskBean taskBean;
+    private String[] areainfo={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
 
     public TaskListViewAdapter(Context context, TaskBean taskBean) {
         this.context = context;
@@ -54,14 +56,13 @@ public class TaskListViewAdapter extends BaseAdapter {
             viewHolder= (ViewHolder) convertView.getTag();
         }
 
-        // 根据位置得到数据
         TaskBean.DataBean bean = taskBean.getData().get(position);
         viewHolder.tv_title.setText(bean.getTname());
-        viewHolder.tv_place.setText("地点id+"+bean.getPid());
-
-        //FIXME: SQLite中读取地区信息
+        viewHolder.tv_place.setText(areainfo[bean.getAid()]);
         viewHolder.tv_time.setText(DateUtil.getDateToString(bean.getEtime(),"yyyy年MM月dd日"));
-        GlideApp.with(context).load(bean.getTpic()).placeholder(R.drawable.task_item_default).fitCenter().into(viewHolder.imageView);
+
+        String final_url= Constant.URL_IMGHEAD+"/task/"+bean.getTpic();
+        GlideApp.with(context).load(final_url).placeholder(R.drawable.task_item_default).fitCenter().into(viewHolder.imageView);
 
         return convertView;
     }

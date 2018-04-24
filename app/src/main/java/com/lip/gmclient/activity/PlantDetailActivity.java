@@ -3,12 +3,14 @@ package com.lip.gmclient.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lip.gmclient.R;
 import com.lip.gmclient.base.GlideApp;
+import com.lip.gmclient.utils.Constant;
 
 public class PlantDetailActivity extends AppCompatActivity {
 
@@ -39,8 +41,11 @@ public class PlantDetailActivity extends AppCompatActivity {
         tv_plantname.setText(plantname);
         tv_plantsname.setText(plantsname);
         tv_plantdetail.setText(plantdetail);
+
+        String final_url= Constant.URL_IMGHEAD+"/plant/"+plantimg+".jpg";
+
         GlideApp.with(this)
-                .load(plantimg)
+                .load(final_url)
                 .placeholder(R.drawable.task_item_default)
                 .fitCenter()
                 .into(imageView);
@@ -52,6 +57,8 @@ public class PlantDetailActivity extends AppCompatActivity {
         plantsname=data.getString("sname");
         plantdetail=data.getString("detail");
         plantimg=data.getString("img");
+
+        Log.i(Constant.TAG,plantimg);
     }
 
     public void back(View v){

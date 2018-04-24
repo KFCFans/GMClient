@@ -18,6 +18,7 @@ import com.lip.gmclient.R;
 import com.lip.gmclient.activity.AboutUsActiity;
 import com.lip.gmclient.activity.BugResponseActivity;
 import com.lip.gmclient.base.GlideApp;
+import com.lip.gmclient.base.LoginActivity;
 import com.lip.gmclient.domain.UserBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.SharedPreferencesUtil;
@@ -37,6 +38,7 @@ public class MineFragment extends Fragment {
     public LinearLayout infoLayout;
     public LinearLayout bugLayout;
     public LinearLayout aboutusLayout;
+    public LinearLayout logoutLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class MineFragment extends Fragment {
         infoLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_personinfo);
         bugLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_bug);
         aboutusLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_aboutus);
+        logoutLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_logout);
         infoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +73,12 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 onClickAboutUs(v);
+            }
+        });
+        logoutLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickLogOut(v);
             }
         });
         return view;
@@ -123,6 +132,14 @@ public class MineFragment extends Fragment {
 
     private void onClickAboutUs(View v){
         Intent intent=new Intent(context, AboutUsActiity.class);
+        startActivity(intent);
+    }
+
+    private void onClickLogOut(View v){
+        // 删除保留在本地的数据
+        SharedPreferencesUtil.setParam(context,Constant.ACCESSTOKEN,"NOTOKEN");
+
+        Intent intent=new Intent(context, LoginActivity.class);
         startActivity(intent);
     }
 

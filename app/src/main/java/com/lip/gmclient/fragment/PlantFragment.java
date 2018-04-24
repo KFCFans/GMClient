@@ -63,7 +63,7 @@ public class PlantFragment extends Fragment{
                         plantRecyclerViewAdapter.setOnItemClickListener(new PlantRecyclerViewAdapter.OnItemClickListener() {
                             @Override
                             public void onClick(int position) {
-                                Log.i(Constant.TAG,"zzzz"+position);
+
                                 Intent intent=new Intent(context,PlantDetailActivity.class);
                                 Bundle data=new Bundle();
                                 data.putString("name",plantListBean.getData().get(position).getPname());

@@ -62,8 +62,10 @@ public class TaskDetailActivity extends AppCompatActivity {
         tv_detail.setText(detail);
         tv_endtime.setText(endtime);
         tv_starttime.setText(starttime);
+
+        String final_url=Constant.URL_IMGHEAD+"/task/"+imgurl;
         GlideApp.with(this)
-                .load(imgurl)
+                .load(final_url)
                 .placeholder(R.drawable.task_item_default)
                 .fitCenter()
                 .into(imageView);
