@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -71,28 +72,57 @@
             android:layout_height="60dp"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/mine_list_personalinfo" />
-
-            <TextView
+            <RelativeLayout
+                android:id="@+id/fragment_mine_mytask"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:text="个人信息"
-                android:textSize="16dp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="18dp"
-                android:src="@drawable/system_next"
-                android:layout_marginRight="8dp"/>
+                <ImageView
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/mine_list_task"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18sp"
+                    android:text="历史任务"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#9f9595"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:id="@+id/fragment_mine_weather"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/mine_list_weather"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="18sp"
+                    android:text="实时天气"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

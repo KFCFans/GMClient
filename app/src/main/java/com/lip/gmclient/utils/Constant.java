@@ -20,7 +20,6 @@ public class Constant {
     /**
      * 和风天气
      */
-    public static final String HEWEATHER_ID="HE1804251258211297";
     public static final String HEWEATHER_KEY="81ff5d6c263441d8bfbed6c043ca6bcb";
     public static final String HEWEATHER_URL="https://free-api.heweather.com/s6/weather/now";
     public static final String HEWEATHER_LOCATION="CN101190201";

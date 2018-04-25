@@ -27,6 +27,7 @@
         <activity android:name=".activity.PlantDetailActivity"/>
         <activity android:name=".activity.TaskDetailActivity"/>
         <activity android:name=".activity.ActivityDetailActivity"/>
+        <activity android:name=".activity.WeatherActivity"/>
     </application>
 
 </manifest>
