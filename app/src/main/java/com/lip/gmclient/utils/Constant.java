@@ -54,6 +54,9 @@ public class Constant {
     // 提交反馈信息
     public static final String URL_FEEDBACK=URL_HEAD+"/feedback/commit";
 
+    // 接受任务
+    public static final String URL_ACCEPTTASK=URL_HEAD+"/task/accept";
+
     // 完成新增任务
     public static final String URL_FINISHADDTASK=URL_HEAD+"/task/add";
 
@@ -68,4 +71,5 @@ public class Constant {
 
     // 获取活动列表
     public static final String URL_ACTIVITYLIST=URL_HEAD+"/common/avlist";
+
 }

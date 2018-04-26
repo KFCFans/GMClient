@@ -43,4 +43,13 @@
 
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/fragment_task_listview_item_acceptbtn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/activity_item_accept"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp"/>
+
 </RelativeLayout>
