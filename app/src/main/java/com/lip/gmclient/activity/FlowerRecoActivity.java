@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lip.gmclient.R;
+import com.lip.gmclient.domain.FlowerRecoBean;
 import com.lip.gmclient.domain.TaskBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.Md5Util;
@@ -66,12 +67,19 @@ public class FlowerRecoActivity extends AppCompatActivity {
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
-
+                                Gson gson=new Gson();
+                                FlowerRecoBean  bean=gson.fromJson(response.body(),FlowerRecoBean.class);
+                                if(bean.getRet()!=0){
+                                    Toast.makeText(context,"接口异常！"+bean.getMsg(),Toast.LENGTH_SHORT).show();
+                                }else{
+                                    String flower_name=bean.getData().getTag_list().get(0).getLabel_name();
+                                    Double flower_probability=bean.getData().getTag_list().get(0).getLabel_confd();
+                                }
                             }
 
                             @Override
                             public void onError(Response<String> response) {
-
+                                Toast.makeText(context,"网络异常！",Toast.LENGTH_SHORT).show();
                             }
                         });
             }

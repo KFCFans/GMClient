@@ -37,7 +37,7 @@ public class TencentAIUtil {
     }
 
     // 鉴权
-    public static String generateAppSign(TreeMap<String,String> mParams) throws UnsupportedEncodingException {
+    public static String generateAppSign(TreeMap<String, String> mParams) throws UnsupportedEncodingException {
         Set<String> keySet = mParams.keySet();
         StringBuilder sb = new StringBuilder();
         Iterator<String> iterator = keySet.iterator();
@@ -54,13 +54,13 @@ public class TencentAIUtil {
 
     // 将文件转为Base64
     public static String fileToBase64(File file) {
-           String res;
-           try {
-               res=encode(readFileByBytes(file));
-           }catch (Exception e){
-               return null;
-           }
-           return res;
+        String res;
+        try {
+            res = encode(readFileByBytes(file));
+        } catch (Exception e) {
+            return null;
+        }
+        return res;
     }
 
     private static final char last2byte = (char) Integer.parseInt("00000011", 2);
@@ -113,9 +113,10 @@ public class TencentAIUtil {
                 to.append("=");
             }
         }
-        Log.i("lip","网上的base64："+to.toString());
+        Log.i("lip", "网上的base64：" + to.toString());
         return to.toString();
     }
+
     /**
      * 根据文件路径读取byte[] 数组
      */
