@@ -25,7 +25,6 @@ public class TaskListViewAdapter extends BaseAdapter {
     private Context context;
     private TaskBean taskBean;
     private TaskBean.DataBean bean;
-    private String[] areainfo={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
 
     public TaskListViewAdapter(Context context, TaskBean taskBean) {
         this.context = context;
@@ -66,7 +65,7 @@ public class TaskListViewAdapter extends BaseAdapter {
 
         bean = taskBean.getData().get(position);
         viewHolder.tv_title.setText(bean.getTname());
-        viewHolder.tv_place.setText(areainfo[bean.getAid()]);
+        viewHolder.tv_place.setText(Constant.AREAINFO[bean.getAid()]);
         viewHolder.tv_time.setText(DateUtil.getDateToString(bean.getEtime(),"yyyy年MM月dd日"));
         if(bean.getTstatus()==1){
             viewHolder.acceptBtn.setVisibility(View.INVISIBLE);

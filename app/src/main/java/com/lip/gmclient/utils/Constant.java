@@ -25,6 +25,11 @@ public class Constant {
     public static final String HEWEATHER_LOCATION="CN101190201";
 
     /**
+     * 地区信息
+     */
+    public static final String[] AREAINFO={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
+
+    /**
      * 网络请求URL
      */
     public static final String URL_HEAD="http://10.0.2.2:8080/gm";

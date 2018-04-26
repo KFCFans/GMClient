@@ -30,6 +30,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     public TextView tv_starttime;
     public TextView tv_endtime;
     public TextView tv_detail;
+    public TextView tv_place;
 
     private String title;
     private String starttime;
@@ -57,11 +58,13 @@ public class TaskDetailActivity extends AppCompatActivity {
         tv_starttime=(TextView)findViewById(R.id.activity_taskdetail_starttime);
         tv_endtime=(TextView)findViewById(R.id.activity_taskdetail_endtime);
         tv_detail=(TextView)findViewById(R.id.activity_taskdetail_detail);
+        tv_place=(TextView)findViewById(R.id.activity_taskdetail_place);
 
         tv_title.setText(title);
         tv_detail.setText(detail);
         tv_endtime.setText(endtime);
         tv_starttime.setText(starttime);
+        tv_place.setText(Constant.AREAINFO[aid]);
 
         String final_url=Constant.URL_IMGHEAD+"/task/"+imgurl;
         GlideApp.with(this)
