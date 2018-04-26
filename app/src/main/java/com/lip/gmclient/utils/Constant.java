@@ -25,6 +25,12 @@ public class Constant {
     public static final String HEWEATHER_LOCATION="CN101190201";
 
     /**
+     * 腾讯AI开放平台
+     */
+    public static final String Tencent_AppID="1106793063";
+    public static final String Tencent_AppKey="QRvsQOB9dfq6m3Jb";
+    public static final String Tencent_API="https://api.ai.qq.com/fcgi-bin/vision/vision_imgidentify";
+    /**
      * 地区信息
      */
     public static final String[] AREAINFO={"牡丹园","桂花园","西瓜园","樱花园","桔子园","小花园","大花园"};
