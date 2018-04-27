@@ -38,7 +38,6 @@ public class MineFragment extends Fragment {
     public TextView nameTextView;
     public TextView phoneTextView;
 
-    public LinearLayout infoLayout;
     public LinearLayout bugLayout;
     public LinearLayout aboutusLayout;
     public LinearLayout logoutLayout;
@@ -59,18 +58,12 @@ public class MineFragment extends Fragment {
         headImageView=(ImageView)view.findViewById(R.id.fragment_mine_headimg);
         nameTextView=(TextView)view.findViewById(R.id.fragment_mine_username);
         phoneTextView=(TextView)view.findViewById(R.id.fragment_mine_phone);
-        infoLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_personinfo);
         bugLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_bug);
         aboutusLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_aboutus);
         logoutLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_logout);
         flowerrecoLayout=view.findViewById(R.id.fragment_mine_layout_flowerreco);
         weatherLayout=view.findViewById(R.id.fragment_mine_weather);
-        infoLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickPersonInfo(v);
-            }
-        });
+
         bugLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,20 +133,20 @@ public class MineFragment extends Fragment {
                 });
     }
 
-    private void onClickPersonInfo(View v){
 
-    }
-
+    // 打开意见反馈
     private void onClickBugResponse(View v){
         Intent intent=new Intent(context, BugResponseActivity.class);
         startActivity(intent);
     }
 
+    // 打开关于我们
     private void onClickAboutUs(View v){
         Intent intent=new Intent(context, AboutUsActiity.class);
         startActivity(intent);
     }
 
+    // 退出登陆
     private void onClickLogOut(View v){
         // 删除保留在本地的数据
         SharedPreferencesUtil.setParam(context,Constant.ACCESSTOKEN,"NOTOKEN");
@@ -163,14 +156,15 @@ public class MineFragment extends Fragment {
         startActivity(intent);
     }
 
+    // 打开天气
     private void onClickWeather(View v){
         Intent intent=new Intent(context, WeatherActivity.class);
         startActivity(intent);
     }
 
+    // 打开识花
     private void onClickFlowerReco(View v){
         Intent intent=new Intent(context, FlowerRecoActivity.class);
         startActivity(intent);
     }
-
 }
