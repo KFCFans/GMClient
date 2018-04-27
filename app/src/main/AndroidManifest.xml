@@ -29,6 +29,7 @@
         <activity android:name=".activity.TaskDetailActivity"/>
         <activity android:name=".activity.ActivityDetailActivity"/>
         <activity android:name=".activity.WeatherActivity"/>
+        <activity android:name=".activity.FlowerRecoResultActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
