@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import com.lip.gmclient.R;
 import com.lip.gmclient.activity.AboutUsActiity;
 import com.lip.gmclient.activity.BugResponseActivity;
+import com.lip.gmclient.activity.FlowerRecoActivity;
 import com.lip.gmclient.activity.WeatherActivity;
 import com.lip.gmclient.base.GlideApp;
 import com.lip.gmclient.base.LoginActivity;
@@ -43,6 +44,7 @@ public class MineFragment extends Fragment {
     public LinearLayout logoutLayout;
     public RelativeLayout taskLayout;
     public RelativeLayout weatherLayout;
+    public LinearLayout flowerrecoLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class MineFragment extends Fragment {
         bugLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_bug);
         aboutusLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_aboutus);
         logoutLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_logout);
+        flowerrecoLayout=view.findViewById(R.id.fragment_mine_layout_flowerreco);
         weatherLayout=view.findViewById(R.id.fragment_mine_weather);
         infoLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +93,12 @@ public class MineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 onClickWeather(v);
+            }
+        });
+        flowerrecoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickFlowerReco(v);
             }
         });
         return view;
@@ -156,6 +165,11 @@ public class MineFragment extends Fragment {
 
     private void onClickWeather(View v){
         Intent intent=new Intent(context, WeatherActivity.class);
+        startActivity(intent);
+    }
+
+    private void onClickFlowerReco(View v){
+        Intent intent=new Intent(context, FlowerRecoActivity.class);
         startActivity(intent);
     }
 

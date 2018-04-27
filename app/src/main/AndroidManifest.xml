@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.FlowerRecoActivity">
+        <activity android:name=".base.LoadActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +29,7 @@
         <activity android:name=".activity.TaskDetailActivity"/>
         <activity android:name=".activity.ActivityDetailActivity"/>
         <activity android:name=".activity.WeatherActivity"/>
+        <activity android:name=".activity.FlowerRecoActivity"/>
         <activity android:name=".activity.FlowerRecoResultActivity"/>
 
         <provider
