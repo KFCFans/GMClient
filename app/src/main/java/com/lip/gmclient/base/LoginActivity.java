@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onError(Response<String> response) {
                         // 用户尚未注册
-
+                        Toast.makeText(context,"用户未注册！",Toast.LENGTH_SHORT).show();
                     }
                 });
     }

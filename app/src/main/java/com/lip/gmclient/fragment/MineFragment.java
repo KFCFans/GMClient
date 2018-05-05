@@ -19,6 +19,7 @@ import com.lip.gmclient.R;
 import com.lip.gmclient.activity.AboutUsActiity;
 import com.lip.gmclient.activity.BugResponseActivity;
 import com.lip.gmclient.activity.FlowerRecoActivity;
+import com.lip.gmclient.activity.HistoryTaskActivity;
 import com.lip.gmclient.activity.WeatherActivity;
 import com.lip.gmclient.base.GlideApp;
 import com.lip.gmclient.base.LoginActivity;
@@ -54,7 +55,7 @@ public class MineFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_mine,container,false);
+        final View view=inflater.inflate(R.layout.fragment_mine,container,false);
         headImageView=(ImageView)view.findViewById(R.id.fragment_mine_headimg);
         nameTextView=(TextView)view.findViewById(R.id.fragment_mine_username);
         phoneTextView=(TextView)view.findViewById(R.id.fragment_mine_phone);
@@ -63,6 +64,7 @@ public class MineFragment extends Fragment {
         logoutLayout=(LinearLayout)view.findViewById(R.id.fragment_mine_layout_logout);
         flowerrecoLayout=view.findViewById(R.id.fragment_mine_layout_flowerreco);
         weatherLayout=view.findViewById(R.id.fragment_mine_weather);
+        taskLayout=view.findViewById(R.id.fragment_mine_layout_mytask);
 
         bugLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +96,13 @@ public class MineFragment extends Fragment {
                 onClickFlowerReco(v);
             }
         });
+        taskLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickHistoryTask(v);
+            }
+        });
+
         return view;
     }
 
@@ -165,6 +174,12 @@ public class MineFragment extends Fragment {
     // 打开识花
     private void onClickFlowerReco(View v){
         Intent intent=new Intent(context, FlowerRecoActivity.class);
+        startActivity(intent);
+    }
+
+    // 打开历史任务
+    private void onClickHistoryTask(View v){
+        Intent intent=new Intent(context, HistoryTaskActivity.class);
         startActivity(intent);
     }
 }

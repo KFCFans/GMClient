@@ -67,7 +67,7 @@ public class TaskListViewAdapter extends BaseAdapter {
         viewHolder.tv_title.setText(bean.getTname());
         viewHolder.tv_place.setText(Constant.AREAINFO[bean.getAid()]);
         viewHolder.tv_time.setText(DateUtil.getDateToString(bean.getEtime(),"yyyy年MM月dd日"));
-        if(bean.getTstatus()==1){
+        if(bean.getTstatus()!=0){
             viewHolder.acceptBtn.setVisibility(View.INVISIBLE);
         }else{
             viewHolder.acceptBtn.setOnClickListener(new View.OnClickListener() {

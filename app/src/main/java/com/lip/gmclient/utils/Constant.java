@@ -47,6 +47,9 @@ public class Constant {
     // 获取任务列表
     public static final String URL_TASKLIST=URL_HEAD+"/task/list";
 
+    // 获取历史任务列表
+    public static final String URL_HISTORYTASKLIST=URL_HEAD+"/task/history";
+
     // 获取地区列表
     public static final String URL_AREALIST=URL_HEAD+"/area/list";
 

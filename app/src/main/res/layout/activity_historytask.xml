@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:onClick="back"
+            android:background="@drawable/system_back"/>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:textSize="23sp"
+            android:textColor="#FFFFFFFF"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_historytask" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <info.hoang8f.android.segmented.SegmentedGroup
+            xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/activity_historytask_segmentgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+
+            segmentedgroup:sc_border_width="2dp"
+            segmentedgroup:sc_corner_radius="10dp">
+
+            <RadioButton
+                android:id="@+id/activity_historytask_radiobtn_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="全部"
+                style="@style/RadioButton" />
+
+            <RadioButton
+                android:id="@+id/activity_historytask_radiobtn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="维护"
+                style="@style/RadioButton" />
+
+            <RadioButton
+                android:id="@+id/activity_historytask_radiobtn_replace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="移植"
+                style="@style/RadioButton" />
+            <RadioButton
+                android:id="@+id/activity_historytask_radiobtn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新增"
+                style="@style/RadioButton" />
+            <RadioButton
+                android:id="@+id/activity_historytask_radiobtn_del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除"
+                style="@style/RadioButton" />
+        </info.hoang8f.android.segmented.SegmentedGroup>
+    </RelativeLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/activity_historytask_refresh"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <ListView
+            android:id="@+id/activity_historytask_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+</LinearLayout>
