@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         username=et_username.getText().toString();
         password=et_password.getText().toString();
         md5pwd= Md5Util.md5(password);
-
         OkGo.<String>post(Constant.URL_PWDLOGIN)
                 .params("uid",username)
                 .params("pwd",md5pwd)
@@ -66,7 +65,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(Response<String> response) {
                         Gson gson=new Gson();
                         UserBean userBean=gson.fromJson(response.body(),UserBean.class);
-
                         int status=userBean.getStatus();
                         if(status==200){
                             //登陆成功
@@ -76,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent=new Intent();
                             intent.setClass(context,MainActivity.class);
                             startActivity(intent);
-
                         }else if(status==400){
                             // 密码错误
                             Toast.makeText(context,"密码错误！",Toast.LENGTH_SHORT).show();
@@ -84,7 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(context,"服务器错误，请联系管理员！",Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onError(Response<String> response) {
                         // 用户尚未注册

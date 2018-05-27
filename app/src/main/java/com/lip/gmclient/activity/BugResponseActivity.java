@@ -1,7 +1,10 @@
 package com.lip.gmclient.activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,14 +20,18 @@ import com.lip.gmclient.domain.ResponseBean;
 import com.lip.gmclient.domain.UserBean;
 import com.lip.gmclient.utils.Constant;
 import com.lip.gmclient.utils.SharedPreferencesUtil;
+import com.lip.gmclient.utils.TakePictureManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import java.io.File;
+import java.util.List;
+
 public class BugResponseActivity extends AppCompatActivity {
 
+    private TakePictureManager takePictureManager;
     public EditText editText;
-
     public Context context;
 
     @Override
@@ -37,6 +44,18 @@ public class BugResponseActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_bugresponse);
         editText=(EditText)findViewById(R.id.activity_bugresponse_edittext);
+        takePictureManager=new TakePictureManager(this);
+        takePictureManager.setTakePictureCallBackListener(new TakePictureManager.takePictureCallBackListener() {
+            @Override
+            public void successful(boolean isTailor, File outFile, Uri filePath) {
+
+            }
+
+            @Override
+            public void failed(int errorCode, List<String> deniedPermissions) {
+
+            }
+        });
     }
 
     public void back(View view){
@@ -71,5 +90,16 @@ public class BugResponseActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        takePictureManager.attachToActivityForResult(requestCode, resultCode, data);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        takePictureManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

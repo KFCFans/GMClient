@@ -67,24 +67,19 @@ public class WeatherActivity extends AppCompatActivity {
                     public void onSuccess(Response<String> response) {
                         Gson gson=new Gson();
                         weatherBean=gson.fromJson(response.body(),WeatherBean.class);
-
                         tv_updatetime.setText(weatherBean.getUpdateTime());
                         tv_winddirection.setText(weatherBean.getWindDirection());
                         tv_windpower.setText(weatherBean.getWindPower());
                         tv_weather.setText(weatherBean.getWeather());
                         tv_tempeture.setText(weatherBean.getTempeture());
-
                         GlideApp.with(context)
                                 .load(weatherBean.getWeatherImgURL())
                                 .placeholder(R.drawable.activity_weather_default)
                                 .into(weatherImageView);
-
                     }
-
                     @Override
                     public void onError(Response<String> response) {
                         Log.e(Constant.TAG,response.getException().getMessage());
-
                         Toast.makeText(context,"网络错误！",Toast.LENGTH_SHORT).show();
                     }
                 });
