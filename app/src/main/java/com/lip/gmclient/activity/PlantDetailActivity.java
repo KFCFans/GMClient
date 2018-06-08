@@ -18,11 +18,17 @@ public class PlantDetailActivity extends AppCompatActivity {
     public TextView tv_plantname;
     public TextView tv_plantsname;
     public TextView tv_plantdetail;
+    public TextView tv_plantlhxg;
+    public TextView tv_plantxyfb;
+    public TextView tv_planttype;
 
     private String plantname;
     private String plantsname;
     private String plantdetail;
     private String plantimg;
+    private String plantlhxg;
+    private String plantxyfb;
+    private String planttype;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,14 +39,20 @@ public class PlantDetailActivity extends AppCompatActivity {
 
     private void initView() {
         setContentView(R.layout.activity_plantdetail);
-        imageView=(ImageView)findViewById(R.id.activity_plantdetail_headimg);
-        tv_plantname=(TextView)findViewById(R.id.activity_plantdetail_plantname);
-        tv_plantsname=(TextView)findViewById(R.id.activity_plantdetail_plantsname);
-        tv_plantdetail=(TextView)findViewById(R.id.activity_plantdetail_plantdetail);
+        imageView=findViewById(R.id.activity_plantdetail_headimg);
+        tv_plantname=findViewById(R.id.activity_plantdetail_plantname);
+        tv_plantsname=findViewById(R.id.activity_plantdetail_plantsname);
+        tv_plantdetail=findViewById(R.id.activity_plantdetail_plantdetail);
+        tv_plantlhxg=findViewById(R.id.activity_plantdetail_plantlhxg);
+        tv_planttype=findViewById(R.id.activity_plantdetail_planttype);
+        tv_plantxyfb=findViewById(R.id.activity_plantdetail_plantxyfb);
 
         tv_plantname.setText(plantname);
         tv_plantsname.setText(plantsname);
         tv_plantdetail.setText(plantdetail);
+        tv_plantlhxg.setText(plantlhxg);
+        tv_plantxyfb.setText(plantxyfb);
+        tv_planttype.setText(planttype);
 
         String final_url= Constant.URL_IMGHEAD+"/plant/"+plantimg+".jpg";
         GlideApp.with(this)
@@ -56,6 +68,10 @@ public class PlantDetailActivity extends AppCompatActivity {
         plantsname=data.getString("sname");
         plantdetail=data.getString("detail");
         plantimg=data.getString("img");
+
+        plantlhxg=data.getString("lhxg");
+        plantxyfb=data.getString("xyfb");
+        planttype=data.getString("type");
 
     }
 

@@ -4,11 +4,10 @@ import java.util.List;
 
 public class PlantListBean {
 
-
     /**
      * stauts : 200
      * msg : OK
-     * data : [{"pid":1,"pname":"牡丹","pimg":"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=6e2859b657fbb2fb202650402e234bc1/bd315c6034a85edfba77afc84b540923dc547565.jpg","psname":"Paeonia suffruticosa Andr","pdetail":"一种非常美丽的花~~~~~~~~~~·"},{"pid":2,"pname":"菊花","pimg":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1522334501488&di=f2e9411869ee6275bf223861aa6150eb&imgtype=0&src=http%3A%2F%2Fs11.sinaimg.cn%2Fmw690%2Fb52acc99xcd19385a785a%26690","psname":"Ju Hua","pdetail":"大家好我是菊花"},{"pid":3,"pname":"桂花","pimg":"https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=921a11c1566034a83defb0d3aa7a2231/71cf3bc79f3df8dcda3f1751c711728b461028eb.jpg","psname":"GuiHua","pdetail":"大家好我是桂花"}]
+     * data : [{"pid":1,"pname":"牡丹花","pimg":"mudanhua","psname":"Mu Dan","pdetail":"好一朵美丽的牡丹花","ptype":"zz","plhxg":"zz","pxyfb":"zz"},{"pid":2,"pname":"茉莉花","pimg":"molihua","psname":"Mo Li","pdetail":"好一朵美丽的茉莉花","ptype":"zz","plhxg":"zz","pxyfb":"zz"},{"pid":3,"pname":"菊花","pimg":"juhua","psname":"Ju Hua","pdetail":"好一朵美丽的菊花","ptype":"zz","plhxg":"zz","pxyfb":"zz"},{"pid":4,"pname":"银杏","pimg":"yinxing","psname":"Ginkgo biloba L.","pdetail":"银杏","ptype":"zz","plhxg":"zz","pxyfb":"zz"},{"pid":5,"pname":"雪松","pimg":"xuesong","psname":"Xue Song","pdetail":"我是雪松","ptype":"松科 雪松属","plhxg":"绿化效果极佳","pxyfb":"一食堂附件"},{"pid":10,"pname":"1","pimg":"1528466719248","psname":"2","pdetail":"6","ptype":"3","plhxg":"5","pxyfb":"4"}]
      */
 
     private int stauts;
@@ -42,10 +41,13 @@ public class PlantListBean {
     public static class DataBean {
         /**
          * pid : 1
-         * pname : 牡丹
-         * pimg : https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=6e2859b657fbb2fb202650402e234bc1/bd315c6034a85edfba77afc84b540923dc547565.jpg
-         * psname : Paeonia suffruticosa Andr
-         * pdetail : 一种非常美丽的花~~~~~~~~~~·
+         * pname : 牡丹花
+         * pimg : mudanhua
+         * psname : Mu Dan
+         * pdetail : 好一朵美丽的牡丹花
+         * ptype : zz
+         * plhxg : zz
+         * pxyfb : zz
          */
 
         private int pid;
@@ -53,6 +55,9 @@ public class PlantListBean {
         private String pimg;
         private String psname;
         private String pdetail;
+        private String ptype;
+        private String plhxg;
+        private String pxyfb;
 
         public int getPid() {
             return pid;
@@ -92,6 +97,30 @@ public class PlantListBean {
 
         public void setPdetail(String pdetail) {
             this.pdetail = pdetail;
+        }
+
+        public String getPtype() {
+            return ptype;
+        }
+
+        public void setPtype(String ptype) {
+            this.ptype = ptype;
+        }
+
+        public String getPlhxg() {
+            return plhxg;
+        }
+
+        public void setPlhxg(String plhxg) {
+            this.plhxg = plhxg;
+        }
+
+        public String getPxyfb() {
+            return pxyfb;
+        }
+
+        public void setPxyfb(String pxyfb) {
+            this.pxyfb = pxyfb;
         }
     }
 }

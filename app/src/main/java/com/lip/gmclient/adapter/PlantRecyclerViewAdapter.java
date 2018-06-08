@@ -38,14 +38,13 @@ public class PlantRecyclerViewAdapter extends RecyclerView.Adapter<PlantRecycler
     @Override
     public void onBindViewHolder(@NonNull PlantViewHolder holder, final int position) {
         holder.textView.setText(plantListBean.getData().get(position).getPname());
-        String final_url= Constant.URL_IMGHEAD+"/plant/"+plantListBean.getData().get(position).getPimg()+".jpg";
+        String final_url= Constant.URL_IMGHEAD+"/plant/"+plantListBean.getData().get(position).getPimg();
         GlideApp.with(context)
                 .load(final_url)
                 .placeholder(R.drawable.task_item_default)
                 .error(R.drawable.loading_error)
                 .fitCenter()
                 .into(holder.imageView);
-
         if(mOnItemClickListener!=null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -70,6 +70,10 @@ public class PlantFragment extends Fragment{
                                 data.putString("sname",plantListBean.getData().get(position).getPsname());
                                 data.putString("detail",plantListBean.getData().get(position).getPdetail());
                                 data.putString("img",plantListBean.getData().get(position).getPimg());
+
+                                data.putString("lhxg",plantListBean.getData().get(position).getPlhxg());
+                                data.putString("xyfb",plantListBean.getData().get(position).getPxyfb());
+                                data.putString("type",plantListBean.getData().get(position).getPtype());
                                 intent.putExtra("data",data);
                                 startActivity(intent);
                             }
